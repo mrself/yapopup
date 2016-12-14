@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Demo 1</title>
+	<link rel="stylesheet" type="text/css" href="app.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script type="text/javascript" src="index.min.js"></script>
+</head>
+<body>
+	<style type="text/css">
+	body {
+		background: #ccc;
+	}
+	</style>
+	<div class="b-popup" id="pop">
+		<div class="b-popup__content">
+			Content
+		</div>
+	</div>
+
+	<button class="trigger" data-yapopup-target="pop">Trigger</button>
+
+	<script type="text/javascript">
+	$('.b-popup').yapopup();
+	</script>
+</body>
+</html>

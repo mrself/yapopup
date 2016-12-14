@@ -1,0 +1,36 @@
+@mixin e($el, $mod: '') {
+	$selector: '#{$bl}__#{$el}';
+	@if $mod != '' {
+		$selector: '#{$selector}--#{$mod}'
+	}
+
+	#{$selector} {
+		@content;
+	}
+}
+
+$bl: '.b-popup';
+#{$bl} {
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: rgba(255, 255, 255, 0.4);
+	display: none;
+
+	&--show {
+		display: block;
+	}
+
+	@include e(content) {
+		width: 80%;
+		margin: 0 auto;
+		background: #fff;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 50%;
+	}
+}

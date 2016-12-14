@@ -1,0 +1,41 @@
+Preliminary implementaion
+
+Props:
+	- activeTrigger (element): if popup is opened; trigger that controls currently opened popup
+
+	- state (boolean): if popup is open
+
+	- lastFocused (el): null if a popup is closed; last focused element inside a popup
+
+#init
+	setUpElements
+	setUpAria
+	setTriggers
+	setEvents
+
+#open
+	show
+	changeFocus
+	ariaShow
+
+#close
+	hide
+	restoreFocus
+	ariaHide
+
+Key bindings
+	esc:popup > filter > #close
+	click: 
+		trigger > open
+		outside of popup when it is open - close it.
+	(shift)tab: keep focus inside a popup
+
+.make (options)
+	options:
+		element
+		bodyAppend: if append to body (to prevent css issues)
+
+Elements
+	triggers
+	popup
+	close

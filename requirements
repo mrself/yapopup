@@ -1,0 +1,34 @@
+#Code requirements
+ - Customizable
+ 	- change layout
+ 	- change styles
+
+#WAI standards
+Reference - https://www.w3.org/TR/wai-aria-practices/#dialog_modal, https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_dialog_role
+ - popup should be labelled and probaly described
+ - always contains at least one focusable element (it will be 'close' button)
+
+ - events
+ 	- open:
+ 		show popup
+ 		change focus to the first focusable element in a popup
+ 		change aria attributes
+ 	- close:
+ 		hide popup
+ 		change focus to the trigger if it exists or element, that was passes as an option at construction
+ 		change aria attributes
+
+ - keys
+ 	 - Escape - There should be a method to close the dialog without taking any action.
+ 	 	notes (?): If the current focus item has Escape key behavior, the press of the Escape will be handled by the current item and the user may have to press Escape an additional time to close the dialog.
+
+	 - Tab - Focus must be held within the dialog until it is cancelled or submitted. As the user presses tab to move within items in the dialog, pressing tab with focus on the last focusable item in the dialog will move focus back to the first focusable item in the dialog.
+	 - shift + tab - opposite to the previous section
+	 - click outsite a popup closes it
+
+My requirements:
+ - document should not be scrolled when a popup is open
+
+
+ Proposals
+ 	Toggle 'aria-hidden' attribute to a popup background when a popup state is toggled

@@ -1,0 +1,33 @@
+{
+  "name": "yapopup",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/js/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yaroslav Vavrysh <yaruk.my@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "app-module-path": "^2.1.0",
+    "browser-sync": "^2.18.5",
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.0.0",
+    "gulp-watch": "^4.3.11",
+    "gulp.browserify--adapter": "github:mrself/gulp.browserify--adapter#v1.0.5",
+    "jquery": "^2.2.4",
+    "jsdom": "^9.8.3",
+    "mocha": "^3.2.0",
+    "mocha-jsdom": "^1.1.0",
+    "sinon": "^1.17.6",
+    "sinon-chai": "^2.8.0"
+  },
+  "dependencies": {
+    "chai-spies": "^0.7.1",
+    "ya-del": "^1.3.0"
+  }
+}
