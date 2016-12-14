@@ -37,7 +37,9 @@ function focusable(element){
 		visible(element);
 
 	function visible(element){
-		return $.expr.filters.visible(element) && !$(element).parents().addBack().filter(function(){
+		var $el = $(element);
+		var $elAndParents = $el.parents().add($el);
+		return $.expr.filters.visible(element) && !$elAndParents.filter(function(){
 			return $.css(this, 'visibility') === 'hidden';
 		}).length;
 	}
