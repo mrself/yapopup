@@ -86,9 +86,6 @@ App.prototype = $.extend({}, Del, {
 
 	defineEvents: function() {
 		var self = this;
-		this.$el.on('keyup.' + this.name, function(e) {
-			self.checkEsc(e);
-		});
 		this.$trigger.on('click.' + this.name, function(e) {
 			e.preventDefault();
 			self.open();
@@ -97,16 +94,17 @@ App.prototype = $.extend({}, Del, {
 			e.preventDefault();
 			self.close();
 		});
-		this.$el.on('focusout', function(e) {
-			self.onFocusOut(e);
-		});
-		this.$el.on('focusin', function(e) {
-			self.onFocusIn(e);
-		});
+		$(document).on('focusin', function(e) {
+			self.onDocumenFocus(e);
+		}).on('keyup.' + this.name, function(e) {
+			self.checkEsc(e);
+		});;
 	},
 
 	setAria: function() {
 		this.$el.attr('role', 'dialog');
+		// Just to determine that focus is out of a popup
+		this.$el.attr('tabindex', 0);
 	},
 
 	open: function() {
@@ -155,21 +153,23 @@ App.prototype = $.extend({}, Del, {
 			this.close();
 	},
 
-	onFocusIn: function(e) {
-		this.lastFocused = e.target;
+	onDocumenFocus: function(e) {
+		if ($.contains(this.$el[0], e.target)) this.lastFocused = e.target;
+		else {
+			this.setFocusIn();
+		}
 	},
 
-	onFocusOut: function() {
+	/**
+	 * Back focus in a popup
+	 */
+	setFocusIn: function() {
 		var $tabbable = this.$el.find(':tabbable');
-		if (this.lastFocused) {
-			var $lastTabbable = $tabbable.last();
-			if ($lastTabbable[0] === this.lastFocused) {
-				$tabbable.first().focus();
-			} else $lastTabbable.focus();
-		} else {
-			$tabbable.last().focus();
-		}
-	}
+		var $lastTabbable = $tabbable.last();
+		if (this.lastFocused === $lastTabbable[0]) {
+			$tabbable.first().focus();
+		} else $lastTabbable.focus();
+	},
 });
 
 module.exports = App;
