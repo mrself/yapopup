@@ -87,19 +87,18 @@ App.prototype = $.extend({}, Del, {
 
 	defineEvents: function() {
 		var self = this;
+		this.$el.on('click.' + this.name, function(e) {
+			self.onClick(e);
+		});
 		this.$trigger.on('click.' + this.name, function(e) {
 			e.preventDefault();
 			self.open();
 		});
-		this.$close.on('click', function(e) {
-			e.preventDefault();
-			self.close();
-		});
-		$(document).on('focusin', function(e) {
+		$(document).on('focusin.' + this.name, function(e) {
 			self.onDocumenFocus(e);
 		}).on('keyup.' + this.name, function(e) {
 			self.checkEsc(e);
-		});;
+		});
 	},
 
 	setAria: function() {
@@ -149,6 +148,13 @@ App.prototype = $.extend({}, Del, {
 
 	restorefocus: function() {
 		this.$savedFocus.focus();
+	},
+
+	onClick: function(e) {
+		if (e.target === this.$close[0]) this.close();
+		else if (!$.contains(this.$inner[0], e.target) && this.$inner[0] !== e.target) {
+			this.close();
+		}
 	},
 
 	checkEsc: function(e) {
