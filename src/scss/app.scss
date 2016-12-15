@@ -32,7 +32,18 @@ $bl: '.b-popup';
 		position: absolute;
 		left: 0;
 		right: 0;
-		top: 50%;
+		top: 50px;
+		margin-bottom: 20px;
+		padding: 10px;
+	}
+
+	@include e(close) {
+		position: absolute;
+		top: 0;
+		right: 0;
+		background: none;
+		border: 1px solid #ccc;
+		padding: 5px 10px;
 	}
 
 	&BodyOverflow {
