@@ -25,7 +25,7 @@ $bl: '.b-popup';
 		display: block;
 	}
 
-	@include e(content) {
+	@include e(inner) {
 		width: 80%;
 		margin: 0 auto;
 		background: #fff;
