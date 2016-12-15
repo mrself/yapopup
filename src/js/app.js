@@ -103,8 +103,6 @@ App.prototype = $.extend({}, Del, {
 
 	setAria: function() {
 		this.$el.attr('role', 'dialog');
-		// Just to determine that focus is out of a popup
-		this.$el.attr('tabindex', 0);
 	},
 
 	open: function() {
