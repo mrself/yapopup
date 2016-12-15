@@ -1,2 +1,4 @@
 node_modules
 .eslintrc
+demos/app.css
+demos/index.min.js
