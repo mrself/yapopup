@@ -67,6 +67,7 @@ App.prototype = $.extend({}, Del, {
 
 	defineEls: function() {
 		this.$content = this.find('content');
+		this.$body = $(document.body);
 		this.defineTrigger();
 		this.defineClose();
 	},
@@ -108,6 +109,7 @@ App.prototype = $.extend({}, Del, {
 	},
 
 	open: function() {
+		this.$body.addClass(this.options.dName + 'BodyOverflow');
 		this.saveFocus();
 		this.show();
 		this.ariaShow();
@@ -115,6 +117,7 @@ App.prototype = $.extend({}, Del, {
 	},
 
 	close: function() {
+		this.$body.removeClass(this.options.dName + 'BodyOverflow');
 		this.hide();
 		this.restorefocus();
 		this.ariaHide();
