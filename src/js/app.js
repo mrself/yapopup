@@ -66,7 +66,7 @@ App.prototype = $.extend({}, Del, {
 	},
 
 	defineEls: function() {
-		this.$content = this.find('content');
+		this.$inner = this.find('inner');
 		this.$body = $(document.body);
 		this.defineTrigger();
 		this.defineClose();
@@ -81,7 +81,7 @@ App.prototype = $.extend({}, Del, {
 		if (!this.$close.length) {
 			this.$close = $(this.options.close)
 				.addClass(this.makeName('close'))
-				.appendTo(this.$content);
+				.appendTo(this.$inner);
 		}
 	},
 
