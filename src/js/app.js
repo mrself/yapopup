@@ -6,6 +6,8 @@ function App () {
 	this.$savedFocus = undefined;
 
 	this.lastFocused = undefined;
+
+	this.state = false; // false - close, true - open
 }
 
 App._name = 'yapopup';
@@ -112,6 +114,7 @@ App.prototype = $.extend({}, Del, {
 		this.ariaShow();
 		this.focusIn();
 		this.$el.trigger('open.' + this.name);
+		this.state = true;
 	},
 
 	close: function() {
@@ -120,6 +123,7 @@ App.prototype = $.extend({}, Del, {
 		this.restorefocus();
 		this.ariaHide();
 		this.$el.trigger('close.' + this.name);
+		this.state = false;
 	},
 
 	ariaShow: function() {
@@ -158,11 +162,13 @@ App.prototype = $.extend({}, Del, {
 	},
 
 	checkEsc: function(e) {
+		if (!this.state) return;
 		if (e.keyCode == this.constructor.KEY_CODES.ESC)
 			this.close();
 	},
 
 	onDocumenFocus: function(e) {
+		if (!this.state) return;
 		if ($.contains(this.$el[0], e.target)) this.lastFocused = e.target;
 		else {
 			this.setFocusIn();
