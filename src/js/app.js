@@ -111,6 +111,7 @@ App.prototype = $.extend({}, Del, {
 		this.show();
 		this.ariaShow();
 		this.focusIn();
+		this.$el.trigger('open.' + this.name);
 	},
 
 	close: function() {
@@ -118,6 +119,7 @@ App.prototype = $.extend({}, Del, {
 		this.hide();
 		this.restorefocus();
 		this.ariaHide();
+		this.$el.trigger('close.' + this.name);
 	},
 
 	ariaShow: function() {
