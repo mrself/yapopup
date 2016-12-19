@@ -18,7 +18,7 @@ App.defaults = {
 	// Close button html
 	close: '<button>x</button>',
 
-	dName: 'b-popup'
+	dName: 'popup'
 };
 
 App.KEY_CODES = {
