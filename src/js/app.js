@@ -30,10 +30,10 @@ App.KEY_CODES = {
 };
 
 App.make = function(options) {
-	if ($.data(inst.$el[0], 'yapopup_plugin')) return;
+	if ($.data(options.$el[0], 'yapopup_plugin')) return;
 	var inst = new this;
 	inst.options = options;
-	$.data(inst.$el[0], 'yapopup_plugin', inst);
+	$.data(options.$el[0], 'yapopup_plugin', inst);
 	return inst;
 };
 
