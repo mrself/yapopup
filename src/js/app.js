@@ -8,6 +8,8 @@ function App () {
 	this.lastFocused = undefined;
 
 	this.state = false; // false - close, true - open
+
+	this.hasTrigger = false;
 }
 
 App._name = 'yapopup';
@@ -64,7 +66,6 @@ App.prototype = $.extend({}, Del, {
 
 	defineId: function() {
 		this.id = this.$el.attr('id');
-		if (!this.id) throw new Error('There is no id in popup el');
 	},
 
 	defineEls: function() {
@@ -75,7 +76,9 @@ App.prototype = $.extend({}, Del, {
 	},
 
 	defineTrigger: function() {
+		if (!this.id) return;
 		this.$trigger = $('[data-yapopup-target=' + this.id + ']');
+		this.hasTrigger = true;
 	},
 
 	defineClose: function() {
@@ -92,10 +95,12 @@ App.prototype = $.extend({}, Del, {
 		this.$el.on('click.' + this.name, function(e) {
 			self.onClick(e);
 		});
-		this.$trigger.on('click.' + this.name, function(e) {
-			e.preventDefault();
-			self.open();
-		});
+		if (this.hasTrigger) {
+			this.$trigger.on('click.' + this.name, function(e) {
+				e.preventDefault();
+				self.open();
+			});
+		}
 		$(document).on('focusin.' + this.name, function(e) {
 			self.onDocumenFocus(e);
 		}).on('keyup.' + this.name, function(e) {
@@ -113,7 +118,7 @@ App.prototype = $.extend({}, Del, {
 		this.show();
 		this.ariaShow();
 		this.focusIn();
-		this.$el.trigger('open.' + this.name);
+		if (this.hasTrigger) this.$el.trigger('open.' + this.name);
 		this.state = true;
 	},
 
@@ -122,7 +127,7 @@ App.prototype = $.extend({}, Del, {
 		this.hide();
 		this.restorefocus();
 		this.ariaHide();
-		this.$el.trigger('close.' + this.name);
+		if (this.hasTrigger) this.$el.trigger('close.' + this.name);
 		this.state = false;
 	},
 

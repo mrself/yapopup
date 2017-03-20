@@ -93,12 +93,6 @@ describe('setEl', function() {
 });
 
 describe('#defineId', function() {
-	it('throw if element does not have id', function() {
-		var $el = $('<div>');
-		var context = {$el: $el};
-		expect(proto.defineId.bind(context)).to.throw();
-	});
-
 	it('set id property if element has id', function() {
 		var $el = $('<div id="id"></div/>');
 		var context = {$el: $el};

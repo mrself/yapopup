@@ -15,9 +15,10 @@ var spies = require('chai-spies');
 chai.use(spies);
 global.spy = chai.spy;
 
-var jsdom = require('mocha-jsdom');
+var jsdom = require('jsdom-global');
 
 if (!global.isJsDomInited) {
 	jsdom();
+	global.$ = global.jQuery = require('jquery');
 	global.isJsDomInited = true;
 }
