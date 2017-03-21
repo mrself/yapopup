@@ -120,7 +120,7 @@ App.prototype = $.extend({}, Del, {
 		this.show();
 		this.ariaShow();
 		this.focusIn();
-		if (this.hasTrigger) this.$el.trigger('open.' + this.name);
+		this.$el.trigger('open.' + this.name);
 		this.state = true;
 	},
 
@@ -129,7 +129,7 @@ App.prototype = $.extend({}, Del, {
 		this.hide();
 		this.restorefocus();
 		this.ariaHide();
-		if (this.hasTrigger) this.$el.trigger('close.' + this.name);
+		this.$el.trigger('close.' + this.name);
 		this.state = false;
 	},
 
